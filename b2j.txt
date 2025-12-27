@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Combinative Tree Structure</title>
+  <style>
+    body {
+      font-family: "Helvetica Neue", sans-serif;
+      background-color: #ffffff;
+      color: #111;
+      padding: 4rem 2rem;
+      line-height: 1.8;
+      max-width: 960px;
+      margin: auto;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    ul.tree {
+      list-style: none;
+      padding-left: 1.5rem;
+      border-left: 1px solid #ccc;
+    }
+
+    li {
+      margin: 0.5rem 0;
+      position: relative;
+    }
+
+    li::before {
+      content: "";
+      position: absolute;
+      top: 0.8rem;
+      left: -1.1rem;
+      width: 0.8rem;
+      height: 0.1rem;
+      background: #ccc;
+    }
+
+    a {
+      text-decoration: none;
+      color: #0056b3;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .toggle {
+      cursor: pointer;
+      color: #999;
+      font-size: 0.9rem;
+      margin-left: 0.5rem;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Combinative Hyperlink Tree</h1>
+  <ul class="tree">
+    <li>
+      <a href="#">Combinatorics</a> <span class="toggle" onclick="toggle(this)">[+]</span>
+      <ul class="tree hidden">
+        <li>
+          <a href="#">Enumerative Combinatorics</a> <span class="toggle" onclick="toggle(this)">[+]</span>
+          <ul class="tree hidden">
+            <li><a href="#">Binomial Coefficients</a></li>
+            <li><a href="#">Catalan Numbers</a></li>
+            <li><a href="#">Generating Functions</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Graph Theory</a> <span class="toggle" onclick="toggle(this)">[+]</span>
+          <ul class="tree hidden">
+            <li><a href="#">Trees</a></li>
+            <li><a href="#">Coloring</a></li>
+            <li>
+              <a href="#">Connectivity</a> <span class="toggle" onclick="toggle(this)">[+]</span>
+              <ul class="tree hidden">
+                <li><a href="#">Vertex Connectivity</a></li>
+                <li><a href="#">Edge Connectivity</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#">Partition Theory</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <script>
+    function toggle(elem) {
+      const siblingTree = elem.previousElementSibling?.tagName === "A"
+        ? elem.nextElementSibling
+        : null;
+      if (siblingTree) {
+        siblingTree.classList.toggle("hidden");
+        elem.textContent = siblingTree.classList.contains("hidden") ? "[+]" : "[–]";
+      }
+    }
+  </script>
+</body>
+</html>
